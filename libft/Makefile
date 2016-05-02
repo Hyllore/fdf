@@ -6,7 +6,7 @@
 #    By: droly <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 17:07:51 by droly             #+#    #+#              #
-#    Updated: 2016/04/29 15:50:53 by droly            ###   ########.fr        #
+#    Updated: 2016/05/02 19:00:43 by droly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,16 +105,16 @@ $(NAME) :
 	@mv unicode.o add_bonus.o ft_printf/
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "ajout gnl."
-	@echo "ajout printf."
-	@echo "compilation libft.a."
+	@echo "Ajout gnl."
+	@echo "Ajout printf."
+	@echo "Compilation libft.a."
 
 clean:
 	@rm -f $(OBJ)
-	@echo "supression .o ..."
+	@echo "Supression .o (Libft)..."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "supression totale..."
+	@echo "Supression totale (Libft)..."
 
 re: fclean all

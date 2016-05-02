@@ -6,91 +6,58 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 17:12:46 by droly             #+#    #+#             */
-/*   Updated: 2016/04/29 17:02:05 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/02 18:56:18 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdio.h>
+#include "fdf.h"
 
-int	putcolor(int keycode, void **mlx)
+void	error(char *str)
 {
-	int x;
-	int y;
-
-	x = 200;
-	if (keycode == 49)
-		while (x < 800)
-		{
-			y = 200;
-			while (y < 800)
-			{
-				mlx_pixel_put(mlx[0], mlx[1], x, y, 0X00ff00f);
-				y++;
-			}
-			x++;
-		}
-	x = 350;
-	if (keycode == 260)
-		while (x < 650)
-		{
-			y = 350;
-			while (y < 650)
-			{
-				mlx_pixel_put(mlx[0], mlx[1], x, y, 0X00ff00ff);
-				y++;
-			}
-			x++;
-		}
-	x = 450;
-	if (keycode == 259)
-		while (x < 550)
-		{
-			y = 450;
-			while (y < 550)
-			{
-				mlx_pixel_put(mlx[0], mlx[1], x, y, 0X00fffff);
-				y++;
-			}
-			x++;
-		}
-	x = 475;
-	if (keycode == 261)
-		while (x < 525)
-		{
-			y = 475;
-			while (y < 525)
-			{
-				mlx_pixel_put(mlx[0], mlx[1], x, y, 0X00ff);
-				y++;
-			}
-			x++;
-		}
-	printf("%d\n", keycode);
-	return (0);
+	ft_putendl(str);
+	exit(0);
 }
 
-int	main()
+char	**init_tab(char *tab, char **argv)
 {
-	void **mlx;
-//	void *win;
-	int x;
-	int y;
+	int i;
+	char **tab2;
+	int fd;
 
-
-	mlx[0] = mlx_init();
-	mlx[1] = mlx_new_window(mlx[0], 1000, 1000, "fdf");
-	x = 0;
-	while (x < 1000)
+	fd = open(argv[1], 0, O_RDONLY);
+	tab2 = NULL;
+	i = 0;
+	while (get_next_line(fd, &tab) == 1)
+		i++;
+	if ((tab2 = (char**)malloc(sizeof(char*) * (i + 1))) == NULL)
+		error("ERROR : malloc.");
+	fd = open(argv[1], 0, O_RDONLY);
+	i = 0;
+	while (get_next_line(fd, &tab2[i]) == 1)
 	{
-		y = 0;
-		while (y < 1000)
-		{
-			mlx_pixel_put(mlx[0], mlx[1], x, y, 0X00fff);
-			y++;
-		}
-		x++;
+		i++;
 	}
-	mlx_key_hook(mlx[1], putcolor, mlx);
-	mlx_loop(mlx[0]);
+	tab2[i] = NULL;
+	return (tab2);
+}
+
+int	main(int argc, char **argv)
+{
+	t_fdf *fdf;
+	int i;
+
+	i = 0;
+	argc = 1;
+	if ((fdf = (t_fdf*)malloc(sizeof(t_fdf))) == NULL)
+		error("ERROR : malloc.");
+	fdf->mlx = mlx_init();
+	fdf->win = mlx_new_window(fdf->mlx, 1000, 1000, "fdf");
+	fdf->tab = init_tab(NULL, argv);
+	while (fdf->tab[i] != NULL)
+	{
+		ft_putendl(fdf->tab[i]);
+		i++;
+	}
+//	mlx_key_hook(mlx[1], putcolor, mlx);
+//	mlx_loop(mlx[0]);
 }
