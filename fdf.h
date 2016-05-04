@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 14:17:39 by droly             #+#    #+#             */
-/*   Updated: 2016/05/03 18:03:40 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/04 17:36:54 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,29 @@
 # define FDF_H
 # define X (x - (fdf->line_max / 2))
 # define Y (y - (fdf->count / 2))
+# define SIZE 1000
 # include <mlx.h>
 # include <math.h>
-# include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11/X.h"
+# include "X.h"
 # include "libft/libft.h"
 
 typedef struct		s_fdf
 {
 	double			zoom;
 	int				pos;
+	int				bpp;
+	int				sizeline;
+	int				bidon;
 	int				line_max;
 	int				count;
+	char			*adr_img;
+	void			*img;
 	void			*mlx;
 	void			*win;
 	char			**tab;
 	char			***tab2;
+	double			rotate;
+	double			rotateup;
 }					t_fdf;
 
 #endif

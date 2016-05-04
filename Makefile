@@ -5,42 +5,46 @@
 #                                                     +:+ +:+         +:+      #
 #    By: droly <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/03 17:07:51 by droly             #+#    #+#              #
-#    Updated: 2016/05/03 16:49:16 by droly            ###   ########.fr        #
+#    Created: 2016/05/04 12:24:40 by droly             #+#    #+#              #
+#    Updated: 2016/05/04 14:56:00 by droly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = fdf.c
-
-OBJ = $(SRC:.c=.o)
-
+SOURCES = fdf.c
 LIB = libft/libft.a
 
-FLAGS = -Wall -Wextra -Werror
+OBJECTS = $(SOURCES:.c=.o)
 
-FLAGS_MLX = -lmlx -framework OpenGL -framework Appkit
+FLAGS = -Wall -Werror -Wextra -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11
 
-.PHONY: clean fclean re makelibft
+MLXFLAGS = -lmlx -framework OpenGL -framework Appkit
 
-all: $(NAME)
+all: makelibft $(NAME)
 
-$(NAME) : $(OBJ) makelibft
-	clang $(FLAGS) $(SRC) $(LIB) $(FLAGS_MLX) -o $(NAME)
-	@echo "\033[1;36mCompilation completed.\033[0m"
+$(NAME): $(OBJECTS)
+	@echo "\033[1;35;mStart compilation...\033[0m"
+	@gcc $(LIB) $(FLAGS) $(MLXFLAGS) -o $@ $^
+	@echo "\033[1;32;mCompilation success !\033[0m"
 
 makelibft:
 	@make -C libft/
 
+%.o:%.c
+	@echo "\033[1;36;mMaking .o...\033[0m"
+	@gcc $(FLAGS) -c $<
+
 clean:
-	@rm -f $(OBJ)
+	@echo "\033[1;31;mCleaning *.o (fdf)...\033[0m"
 	@make clean -C libft/
-	@echo "\033[1;31mSupression .o (fdf)...\033[0m"
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	@rm -f $(NAME)
+	@echo "\033[1;31;mDeleting all..\033[0m"
 	@make fclean -C libft/
-	@echo "\033[1;31mSupression totale (fdf)...\033[0m"
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
