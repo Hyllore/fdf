@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/05 16:20:19 by droly             #+#    #+#             */
-/*   Updated: 2016/05/05 16:20:23 by droly            ###   ########.fr       */
+/*   Created: 2016/05/06 14:36:12 by droly             #+#    #+#             */
+/*   Updated: 2016/05/06 14:55:44 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char		**ft_strsplit(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	if ((array = (char **)malloc((count_words_split(s, c) + 1)
-					* sizeof(char *))) == NULL)
+			* sizeof(char *))) == NULL)
 		return (NULL);
 	arr_pos = 0;
 	i = 0;

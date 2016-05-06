@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:09:59 by droly             #+#    #+#             */
-/*   Updated: 2016/04/29 15:34:30 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/06 15:06:56 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_printf			apply_flags(t_printf *lst, t_flags *lst2, va_list argptr,
 char				*put_in_maj(char *str);
 char				*take_type1(t_printf *lst, t_flags *lst2, char *str,
 			va_list argptr);
-char			*take_type2(t_printf *lst, char *str, va_list argptr);
+char				*take_type2(t_printf *lst, char *str, va_list argptr);
 char				*apply_diese(t_printf *lst, char *str);
 char				*apply_space(char *str);
 char				*apply_plus(char *str);

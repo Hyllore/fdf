@@ -6,18 +6,22 @@
 #    By: droly <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/04 12:24:40 by droly             #+#    #+#              #
-#    Updated: 2016/05/05 12:09:12 by droly            ###   ########.fr        #
+#    Updated: 2016/05/06 19:14:15 by droly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SOURCES = fdf.c
+SOURCES = fdf.c \
+		  inittab.c \
+		  pixlput.c \
+		  lineput.c
+
 LIB = libft/libft.a
 
 OBJECTS = $(SOURCES:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11
+FLAGS = -Wall -Werror -Wextra -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers/X11
 
 MLXFLAGS = -lmlx -framework OpenGL -framework Appkit
 
