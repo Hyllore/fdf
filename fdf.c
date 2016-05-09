@@ -6,11 +6,54 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 17:12:46 by droly             #+#    #+#             */
-/*   Updated: 2016/05/06 17:28:22 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:50:14 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void		add_free_all(t_fdf *fdf, int i, int i2)
+{
+	if (fdf->tab)
+	{
+		while (fdf->tab[i] != NULL)
+		{
+			free(fdf->tab[i]);
+			i++;
+		}    
+		free(fdf->tab);
+	}
+	i = 0;
+	if (fdf->tab2)
+	{
+		while (fdf->tab2[i] != NULL)
+		{
+			while (fdf->tab2[i][i2] != NULL)
+			{
+				free(fdf->tab2[i][i2]);
+				i2++;
+			}
+			i2 = 0;
+			free(fdf->tab2[i]);
+			i++;
+		}
+		free(fdf->tab2);
+	}
+}
+
+void		free_all(t_fdf *fdf)
+{
+	if (fdf->adr_img)
+		free(fdf->adr_img);
+	if (fdf->img)
+		free(fdf->img);
+	if (fdf->mlx)
+		free(fdf->mlx);
+	if (fdf->win)
+		free(fdf->win);
+	add_free_all(fdf, 0, 0);
+	free(fdf);
+}
 
 void		init_struct(t_fdf *fdf, char **argv)
 {
@@ -22,7 +65,6 @@ void		init_struct(t_fdf *fdf, char **argv)
 	fdf->pos = SIZE / 2;
 	fdf->rotate = 0;
 	fdf->rotateup = 0;
-//	fdf->high = 0;
 	fdf->line_max = ft_tablen(fdf->tab2);
 	fdf->img = mlx_new_image(fdf->mlx, SIZE, SIZE);
 	fdf->adr_img = mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->sizeline,

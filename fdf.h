@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 14:17:39 by droly             #+#    #+#             */
-/*   Updated: 2016/05/06 17:59:41 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:41:13 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 typedef struct	s_fdf
 {
-//	int			high;
 	double		zoom;
 	int			pos;
 	int			bpp;
@@ -53,5 +52,6 @@ void			clear_img(t_fdf *fdf);
 void			ft_keycode(int keycode, t_fdf *fdf);
 void			pixlput(t_fdf *fdf, int x, int y, int tmp_t);
 void			prelineput(int c1[2], int c2[2], t_fdf *fdf);
+void			free_all(t_fdf *fdf);
 
 #endif
