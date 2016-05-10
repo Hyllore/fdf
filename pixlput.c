@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 14:03:06 by droly             #+#    #+#             */
-/*   Updated: 2016/05/09 18:19:51 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/10 14:04:44 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void		add_analyze_tab(int x, int y, t_fdf *fdf)
 	{
 		if (fdf->tab2[y + 1][x])
 		{
-			ft_putstr(fdf->tab2[y + 1][x]);
-			ft_putchar(' ');
 			c1[0] = y;
 			c1[1] = x;
 			c2[0] = y + 1;

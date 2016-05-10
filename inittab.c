@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 14:05:13 by droly             #+#    #+#             */
-/*   Updated: 2016/05/09 18:04:56 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/10 13:43:21 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void		error(char *str)
 void		split_tab(t_fdf *fdf)
 {
 	int		i;
+	int		i2;
 
+	i2 = 0;
 	i = 0;
 	if ((fdf->tab2 = (char***)malloc(sizeof(char**) * (fdf->count + 1))) ==
 			NULL)
@@ -29,6 +31,14 @@ void		split_tab(t_fdf *fdf)
 	while (i < fdf->count)
 	{
 		fdf->tab2[i] = ft_strsplit(fdf->tab[i], ' ');
+		while (fdf->tab2[i][i2] != NULL)
+		{
+			if (ft_strcmp(ft_itoa(ft_atoi(fdf->tab2[i][i2])), fdf->tab2[i][i2])
+					!= 0)
+				error("ERROR : bigger or lower than an int.");
+			i2++;
+		}
+		i2 = 0;
 		i++;
 	}
 	fdf->tab2[i] = NULL;
@@ -47,8 +57,10 @@ int			ft_tablen(char ***tab)
 	{
 		while (tab[i][i2] != NULL)
 			i2++;
-		if (i2 > count)
+		if (count == 0)
 			count = i2;
+		if (i2 != count)
+			error("ERROR : too large");
 		i2 = 0;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/02 14:17:39 by droly             #+#    #+#             */
-/*   Updated: 2016/05/09 16:41:13 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/10 12:17:30 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_fdf
 	double		rotateup;
 }				t_fdf;
 
+int				ft_tablen2(char **tab);
 void			error(char *str);
 void			split_tab(t_fdf *fdf);
 int				ft_tablen(char ***tab);

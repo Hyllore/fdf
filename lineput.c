@@ -6,11 +6,26 @@
 /*   By: droly <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 16:24:49 by droly             #+#    #+#             */
-/*   Updated: 2016/05/09 18:19:53 by droly            ###   ########.fr       */
+/*   Updated: 2016/05/10 14:04:08 by droly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int			ft_tablen2(char **tab)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		count++;
+		i++;
+	}
+	return (count);
+}
 
 int			*addlineput1(int *num, t_fdf *fdf, char *tmp)
 {
@@ -87,7 +102,6 @@ void		prelineput(int c1[2], int c2[2], t_fdf *fdf)
 {
 	int		tmp[2];
 
-//	ft_putchar('y');
 	tmp[1] = (int)((cos((45 + fdf->rotate)) * X1 -
 			sin((45 + fdf->rotate)) * Y1) * fdf->zoom + fdf->pos);
 	tmp[0] = (int)((-sin((45 + fdf->rotate)) * sin((35.26 +
@@ -96,19 +110,13 @@ void		prelineput(int c1[2], int c2[2], t_fdf *fdf)
 				ft_atoi(fdf->tab2[c1[0]][c1[1]])) * fdf->zoom + fdf->pos);
 	c1[0] = tmp[0];
 	c1[1] = tmp[1];
-//	ft_putchar('t');
 	tmp[1] = (int)((cos((45 + fdf->rotate)) * X2 -
 			sin((45 + fdf->rotate)) * Y2) * fdf->zoom + fdf->pos);
-//	ft_putchar('w');
-//	ft_putnbr(ft_atoi(fdf->tab2[c2[0]][c2[1]]));
-//	ft_putchar('l');
 	tmp[0] = (int)((-sin((45 + fdf->rotate)) * sin((35.26 +
 				fdf->rotateup)) * X2 - cos((45 + fdf->rotate)) * sin((35.26 +
 				fdf->rotateup)) * Y2 + cos((35.26 + fdf->rotateup)) *
 				ft_atoi(fdf->tab2[c2[0]][c2[1]])) * fdf->zoom + fdf->pos);
-//	ft_putchar('s');
 	c2[0] = tmp[0];
 	c2[1] = tmp[1];
-//	ft_putchar('i');
 	lineput(c1, c2, fdf);
 }
